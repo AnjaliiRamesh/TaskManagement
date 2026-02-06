@@ -27,8 +27,6 @@ function TaskCard({ task, onEdit, onDelete }) {
       <div className="task-main">
         <div className="task-title-row">
           <div className="task-title">{task.title}</div>
-        </div>
-        <div className="task-meta">
           <StatusTag status={task.status} />
         </div>
         {task.description && (
@@ -188,7 +186,7 @@ function App() {
   const [initialLoading, setInitialLoading] = useState(true);
   const [error, setError] = useState('');
   const [toast, setToast] = useState('');
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
 
   const [form, setForm] = useState({
     title: '',
@@ -374,7 +372,10 @@ function App() {
               aria-label="Toggle theme"
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             >
-              <span aria-hidden="true">{theme === 'dark' ? '☀️' : '🌙'}</span>
+              <i
+                className={`fa ${theme === 'dark' ? 'fa-sun-o' : 'fa-moon-o'}`}
+                aria-hidden="true"
+              />
             </button>
             <span className="tasks-count-label">{tasks.length} tasks</span>
           </div>
@@ -411,7 +412,7 @@ function App() {
           <section className="card">
             <div className="list-header">
               <div>
-                <div className="card-title">Tasks</div>
+                <div className="card-title">Tasks </div>
                 <div className="card-subtitle">
                   {initialLoading
                     ? 'Loading tasks from API…'
